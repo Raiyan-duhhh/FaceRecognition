@@ -1,26 +1,18 @@
 package com.example.facerecognition.data.entity
 
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.Index
-import androidx.room.PrimaryKey
+import com.google.firebase.firestore.DocumentId
 
-@Entity(
-    tableName = "attendance_log",
-    foreignKeys = [
-        ForeignKey(
-            entity = Staff::class,
-            parentColumns = ["id"],
-            childColumns = ["staffId"],
-            onDelete = ForeignKey.CASCADE
-        )
-    ],
-    indices = [Index(value = ["staffId"])]
-)
+/**
+ * Cloud-ready Attendance model mapping staff punches to their identity.
+ */
 data class AttendanceLog(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long = 0,
-    val staffId: Long,
-    val timestamp: Long = System.currentTimeMillis(),
-    val status: String  // "Check-In" or "Check-Out"
+    @DocumentId
+    val id: String = "",
+    val staffId: String = "",
+    val staffName: String = "",
+    val collegeId: String = "",
+    val departmentId: String = "",
+    val timestamp: Long = 0L,
+    val status: String = "Present",
+    val locationValid: Boolean = false
 )

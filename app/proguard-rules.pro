@@ -19,3 +19,9 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Protect data models from R8 obfuscation to ensure Firebase and Room serialization works
+-keep class com.example.facerecognition.data.entity.Staff { *; }
+-keep class com.example.facerecognition.data.entity.FaceVector { *; }
+-keep class com.example.facerecognition.data.entity.AttendanceLog { *; }
+-keep class com.example.facerecognition.data.local.OfflineAttendanceLog { *; }
